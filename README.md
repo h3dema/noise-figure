@@ -43,4 +43,18 @@ So ns-3 already includes both the $-174\text{ dBm/Hz}$ thermal noise density and
 $P_\text{thermal} = -174\text{ dBm/Hz} + 10\log_{10}(B) + NF$
 
 
+# From watts to dBW or dBm
 
+$P_{\text{dBW}} = 10 \log_{10}(P_{\text{W}})$
+
+$P_{\text{dBm}} = 10 \log_{10}(P_{\text{W}}) + 30$
+
+
+That “+30” simply converts watts → milliwatts (since (1\ \text{W} = 1000\ \text{mW})).
+
+
+You can compute `noisePower_W` before converting to dB:
+
+$P_N(W) = 10^{\frac{-174 + 10\log_{10}(B) + NF - 30}{10}}$
+
+(because -174 dBm/Hz + 30 dB → -204 dBW/Hz)
