@@ -10,8 +10,8 @@ BUILD_DIR := build
 TARGETS := $(BUILD_DIR)/main $(BUILD_DIR)/main_h
 
 # Source files
-MAIN_SRCS := $(SRC_DIR)/main.cc $(SRC_DIR)/noise_figure.cc
-MAIN_H_SRCS := $(SRC_DIR)/main_h.cc $(SRC_DIR)/noise_figure.cc $(SRC_DIR)/noise_helper.cc
+MAIN_SRCS := $(SRC_DIR)/main.cc $(SRC_DIR)/noise_power.cc
+MAIN_H_SRCS := $(SRC_DIR)/main_h.cc $(SRC_DIR)/noise_power.cc $(SRC_DIR)/noise_helper.cc
 
 # Object files
 MAIN_OBJS := $(patsubst $(SRC_DIR)/%.cc, $(BUILD_DIR)/%.o, $(MAIN_SRCS))
