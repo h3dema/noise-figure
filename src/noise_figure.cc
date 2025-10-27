@@ -2,8 +2,12 @@
 #include "noise_figure.h"
 
 
-    // Constructor: B in Hz, NF in dB
-NoiseFigure::NoiseFigure(double bandwidthHz, double noiseFigure_dB)
+/**
+ * Constructor for NoiseFigure.
+ * @param bandwidthHz The default bandwidth of the noise in Hz. Used when computing noise power and the bandwidth is not specified.
+ * @param noiseFigure_dB The noise figure in dB.
+ */
+ NoiseFigure::NoiseFigure(double bandwidthHz, double noiseFigure_dB)
         : m_bandwidthHz(bandwidthHz), m_noiseFigure_dB(noiseFigure_dB)
 {}
 
