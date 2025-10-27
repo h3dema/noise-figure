@@ -26,3 +26,21 @@ Common examples:
   $10\log_{10}(180000) \approx 52.5527\ \Rightarrow P_N\approx -174 + 52.5527 = -121.45\ \text{dBm}$
   
 
+* In ns-3 LTE, the **received SINR** for each sub-band is computed as:
+
+$\text{SINR} = \frac{P_{\text{signal}}}{P_{\text{interference}} + P_{\text{noise}}}$
+
+Where the **thermal noise** is internally derived as:
+$P_{\text{noise,lin}} = k T_0 B \times F$
+
+  - (k): Boltzmann’s constant
+  - (T_0 = 290\ \text{K})
+  - (B): bandwidth per subband (e.g., RB = 180 kHz)
+  - (F): **noise figure (linear)** = (10^{NF_\text{dB}/10})
+
+So ns-3 already includes both the $-174\text{ dBm/Hz}$ thermal noise density and the configured Noise Figure. ns-3 automatically adds the equivalent of the equation below behind the scenes:
+
+$P_\text{thermal} = -174\text{ dBm/Hz} + 10\log_{10}(B) + NF$
+
+
+
