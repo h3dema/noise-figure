@@ -23,6 +23,6 @@ Common examples:
 
 * One LTE Resource Block (RB) = 180 kHz:
   
-  $  10\log_{10}(180000) \approx 52.5527\ \Rightarrow P_N\approx -174 + 52.5527 = -121.45\ \text{dBm}$
+  $10\log_{10}(180000) \approx 52.5527\ \Rightarrow P_N\approx -174 + 52.5527 = -121.45\ \text{dBm}$
   
 
