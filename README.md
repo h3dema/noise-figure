@@ -45,16 +45,32 @@ $P_\text{thermal} = -174\text{ dBm/Hz} + 10\log_{10}(B) + NF$
 
 # From watts to dBW or dBm
 
-$P_{\text{dBW}} = 10 \log_{10}(P_{\text{W}})$
+* $P_{\text{dBW}} = 10 \log_{10}(P_{\text{W}})$
 
-$P_{\text{dBm}} = 10 \log_{10}(P_{\text{W}}) + 30$
+* $P_{\text{dBm}} = 10 \log_{10}(P_{\text{W}}) + 30$
 
 
 That “+30” simply converts watts → milliwatts (since (1\ \text{W} = 1000\ \text{mW})).
 
 
-You can compute `noisePower_W` before converting to dB:
+You can compute noise power in Watts before converting to dB:
 
 $P_N(W) = 10^{\frac{-174 + 10\log_{10}(B) + NF - 30}{10}}$
 
 (because -174 dBm/Hz + 30 dB → -204 dBW/Hz)
+
+
+# C++ example
+
+```cpp
+double k = 1.38064852e-23;  // Boltzmann
+double T = 290.0;           // K
+double B = 10e6;            // Hz
+double NF = 5.0;            // dB
+
+double F_lin = std::pow(10.0, NF/10.0);
+double noisePower_W = k * T * B * F_lin;
+double noisePower_dBm = 10 * std::log10(noisePower_W) + 30;
+
+NS_LOG_UNCOND("Noise Power: " << noisePower_dBm << " dBm");
+```
