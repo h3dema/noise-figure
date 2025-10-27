@@ -1,5 +1,7 @@
-# noise-figure
-This repo contains a simple way to **computing noise figure (NF) for LTE receivers** extracted from [NS-3]().
+# Noise Power and Noise Figure
+
+This repo contains a simple way to **computing noise figure (NF) for LTE receivers** extracted from [NS-3](https://gitlab.com/cttc-lena/ns-3-dev/-/blob/master/src/lte/model/lte-spectrum-value-helper.cc) in *Ptr\<SpectrumValue\>
+LteSpectrumValueHelper::CreateNoisePowerSpectralDensity()*.
 
 # What is Noise Figure
 
@@ -22,9 +24,9 @@ $P_N\text{(dBm)} = -174 \text{dBm/Hz} + 10 \log_{10}(B)$
 Common examples:
 
 * One LTE Resource Block (RB) = 180 kHz:
-  
+
   $10\log_{10}(180000) \approx 52.5527\ \Rightarrow P_N\approx -174 + 52.5527 = -121.45\ \text{dBm}$
-  
+
 
 * In ns-3 LTE, the **received SINR** for each sub-band is computed as:
 
@@ -50,7 +52,7 @@ $P_\text{thermal} = -174\text{ dBm/Hz} + 10\log_{10}(B) + NF$
 * $P_{\text{dBm}} = 10 \log_{10}(P_{\text{W}}) + 30$
 
 
-That “+30” simply converts watts → milliwatts (since (1\ \text{W} = 1000\ \text{mW})).
+That “+30” simply converts watts → milliwatts (since $1 \text{W} = 1000 \text{mW}$).
 
 
 You can compute noise power in Watts before converting to dB:
