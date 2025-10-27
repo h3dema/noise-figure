@@ -1,5 +1,5 @@
 #include <cmath>
-#include "noise_figure.h"
+#include "noise_power.h"
 
 
 /**
@@ -7,17 +7,17 @@
  * @param bandwidthHz The default bandwidth of the noise in Hz. Used when computing noise power and the bandwidth is not specified.
  * @param noiseFigure_dB The noise figure in dB.
  */
- NoiseFigure::NoiseFigure(double bandwidthHz, double noiseFigure_dB)
+ NoisePower::NoisePower(double bandwidthHz, double noiseFigure_dB)
         : m_bandwidthHz(bandwidthHz), m_noiseFigure_dB(noiseFigure_dB)
 {}
 
     // Setters
-void NoiseFigure::SetBandwidth(double bandwidthHz) { m_bandwidthHz = bandwidthHz; }
+void NoisePower::SetBandwidth(double bandwidthHz) { m_bandwidthHz = bandwidthHz; }
 
-void NoiseFigure::SetNoiseFigure(double noiseFigure_dB) { m_noiseFigure_dB = noiseFigure_dB; }
+void NoisePower::SetNoiseFigure(double noiseFigure_dB) { m_noiseFigure_dB = noiseFigure_dB; }
 
 // Get noise power in watts (optional bandwidth override)
-double NoiseFigure::GetNoisePowerW(double bandwidthHz) const
+double NoisePower::GetNoisePowerW(double bandwidthHz) const
 {
     double B = (bandwidthHz > 0.0) ? bandwidthHz : m_bandwidthHz;
     const double k = 1.38064852e-23; // Boltzmann constant [J/K]
@@ -27,7 +27,7 @@ double NoiseFigure::GetNoisePowerW(double bandwidthHz) const
 }
 
 // Get noise power in dBm (optional bandwidth override)
-double NoiseFigure::GetNoisePowerdB(double bandwidthHz) const
+double NoisePower::GetNoisePowerdB(double bandwidthHz) const
 {
     double noiseW = GetNoisePowerW(bandwidthHz);
     return 10.0 * std::log10(noiseW) + 30.0; // W → dBm

@@ -3,11 +3,11 @@
 
 #include <cmath>
 
-class NoiseFigure
+class NoisePower
 {
 public:
     // Constructor: B in Hz, NF in dB
-    NoiseFigure(double bandwidthHz = 1.0e6, double noiseFigure_dB = 5.0);
+    NoisePower(double bandwidthHz = 1.0e6, double noiseFigure_dB = 5.0);
 
     // Setters
     void SetBandwidth(double bandwidthHz);

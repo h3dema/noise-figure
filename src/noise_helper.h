@@ -6,7 +6,7 @@
 #include <iostream>
 #include <vector>
 
-#include "noise_figure.h"
+#include "noise_power.h"
 
 
 class NoiseHelper
@@ -20,7 +20,7 @@ public:
 
     // Accept raw pointer and take ownership (shared_ptr wrapper)
     //    Caller must NOT delete the pointer after passing it here.
-    void AddImsi(uint64_t imsi, std::shared_ptr<NoiseFigure>& noiseFigurePtr);
+    void AddImsi(uint64_t imsi, std::shared_ptr<NoisePower>& noiseFigurePtr);
 
     // Remove IMSI mapping
     bool RemoveImsi(uint64_t imsi);
@@ -28,9 +28,9 @@ public:
     // Check if IMSI exists
     bool HasImsi(uint64_t imsi) const;
 
-    // Return pointer to NoiseFigure for IMSI (nullptr if not found)
+    // Return pointer to NoisePower for IMSI (nullptr if not found)
     // Note: returns raw pointer for convenience; ownership remains with NoiseHelper
-    std::shared_ptr<NoiseFigure> GetNoiseFigurePtr(uint64_t imsi) const;
+    std::shared_ptr<NoisePower> GetNoisePowerPtr(uint64_t imsi) const;
 
     // Compute noise power (W) for IMSI, optional bandwidth override
     double GetNoisePowerW(uint64_t imsi, double bandwidthHz = -1.0) const;
@@ -43,7 +43,7 @@ public:
     void PrintAll() const;
 
 private:
-    std::unordered_map<uint64_t, std::shared_ptr<NoiseFigure>> m_noiseFigures;
+    std::unordered_map<uint64_t, std::shared_ptr<NoisePower>> m_noiseEntries;
 };
 
 #endif // NOISE_HELPER_H

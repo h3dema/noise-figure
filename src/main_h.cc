@@ -1,7 +1,7 @@
 #include <iostream>
 #include <memory>
 
-#include "noise_figure.h"
+#include "noise_power.h"
 #include "noise_helper.h"
 
 
@@ -9,11 +9,11 @@ int main()
 {
     NoiseHelper noisehelper = NoiseHelper();
 
-    std::shared_ptr<NoiseFigure> noisefigure1 = std::make_shared<NoiseFigure>(10e6, 5.0);
-    std::shared_ptr<NoiseFigure> noisefigure2 = std::make_shared<NoiseFigure>(180000000, 1.0);
+    std::shared_ptr<NoisePower> noisepower1 = std::make_shared<NoisePower>(10e6, 5.0);
+    std::shared_ptr<NoisePower> noisepower2 = std::make_shared<NoisePower>(180000000, 1.0);
 
-    noisehelper.AddImsi(1, noisefigure1);
-    noisehelper.AddImsi(2, noisefigure2);
+    noisehelper.AddImsi(1, noisepower1);
+    noisehelper.AddImsi(2, noisepower2);
 
     std::cout << "Access directly by IMSI:" << std::endl;
     std::cout << "Imsi:" << "Noise Power (dBm): " << noisehelper.GetNoisePowerdB(1) << " dBm" << std::endl;
